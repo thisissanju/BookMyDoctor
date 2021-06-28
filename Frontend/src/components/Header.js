@@ -15,6 +15,7 @@ import { LocalHospital } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import { Avatar } from "@material-ui/core";
+import { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -81,8 +82,12 @@ export default function Header1() {
     handleMobileMenuClose();
   };
 
+  const [loggedIn, setLogInState] = useState(false);
+  const toggleLogIn = () => {
+    setLogInState(!loggedIn);
+  };
+
   const navLinkStyle = { color: "white" };
-  const loggedIn = false;
   const menuId = "primary-search-account-menu";
 
   const renderMenu = (
@@ -95,8 +100,23 @@ export default function Header1() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <Link style={navLinkStyle} to="/user/profile">
+        <MenuItem
+          style={{ backgroundColor: "#353a40" }}
+          onClick={handleMenuClose}
+        >
+          Profile
+        </MenuItem>
+      </Link>
+
+      <Link style={navLinkStyle}>
+        <MenuItem
+          style={{ backgroundColor: "#353a40" }}
+          onClick={handleMenuClose}
+        >
+          See Appointment
+        </MenuItem>
+      </Link>
     </Menu>
   );
   const mobileMenuId = "primary-search-account-menu-mobile";
@@ -113,37 +133,37 @@ export default function Header1() {
       <Link style={navLinkStyle} to="/">
         <MenuItem
           onClick={handleMenuClose}
-          style={{ backgroundColor: "#171515" }}
+          style={{ backgroundColor: "#353a40" }}
         >
           <HomeIcon style={{ marginRight: "6px" }} />
           Home
         </MenuItem>
       </Link>
       {!loggedIn && (
-        <Link style={navLinkStyle} to="#6">
+        <Link style={navLinkStyle} to="/fordoctors">
           <MenuItem
             onClick={handleMenuClose}
-            style={{ backgroundColor: "#171515" }}
+            style={{ backgroundColor: "#353a40" }}
           >
             <LocalHospital style={{ marginRight: "6px" }} />
             ForDoctors
           </MenuItem>
         </Link>
       )}
-      <Link style={navLinkStyle} to="#6">
+      <Link style={navLinkStyle} to="/user/bookappointment">
         <MenuItem
           onClick={handleMenuClose}
-          style={{ backgroundColor: "#171515" }}
+          style={{ backgroundColor: "#353a40" }}
         >
           <LocalHospital style={{ marginRight: "6px" }} />
           BookAppointment
         </MenuItem>
       </Link>
       {!loggedIn && (
-        <Link style={navLinkStyle} to="#6">
+        <Link style={navLinkStyle} to="/user/login">
           <MenuItem
             onClick={handleMenuClose}
-            style={{ backgroundColor: "#171515" }}
+            style={{ backgroundColor: "#353a40" }}
           >
             <ExitToApp style={{ marginRight: "6px" }} />
             Login/Register
@@ -153,16 +173,16 @@ export default function Header1() {
       <Link style={navLinkStyle} to="/about">
         <MenuItem
           onClick={handleMenuClose}
-          style={{ backgroundColor: "#171515" }}
+          style={{ backgroundColor: "#353a40" }}
         >
           <Group style={{ marginRight: "6px" }} />
           About-Us
         </MenuItem>
       </Link>
-      <Link style={navLinkStyle} to="#3">
+      <Link style={navLinkStyle} to="/contactus">
         <MenuItem
           onClick={handleMenuClose}
-          style={{ backgroundColor: "#171515" }}
+          style={{ backgroundColor: "#353a40" }}
         >
           <Email style={{ marginRight: "6px" }} />
           Contact-Us
@@ -175,8 +195,11 @@ export default function Header1() {
   if (!loggedIn) width = "750px";
 
   return (
-    <div className={classes.grow}>
-      <AppBar position="static" style={{ backgroundColor: "#171515" }}>
+    <div
+      className={classes.grow}
+      style={{ position: "fixed", top: "0", width: "100%" }}
+    >
+      <AppBar style={{ backgroundColor: "#353a40" }}>
         <Toolbar>
           <Avatar
             className="ml-5"
@@ -194,7 +217,15 @@ export default function Header1() {
             variant="h6"
             noWrap
           >
-            BookMyDoctor
+            <Link
+              style={{
+                color: "white",
+                textDecoration: "none",
+              }}
+              to="/"
+            >
+              BookMyDoctor
+            </Link>
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
@@ -213,7 +244,7 @@ export default function Header1() {
                 Home
               </Link>
               {!loggedIn && (
-                <Link style={navLinkStyle} to="#6">
+                <Link style={navLinkStyle} to="/fordoctors">
                   <i
                     className="fa fa-user-md mr-1"
                     style={{ fontSize: "17px", color: "white" }}
@@ -221,7 +252,7 @@ export default function Header1() {
                   ForDoctors
                 </Link>
               )}
-              <Link style={navLinkStyle} to="#6">
+              <Link style={navLinkStyle} to="/user/bookappointment">
                 <i
                   className="fa fa-user-md mr-1"
                   style={{ fontSize: "17px", color: "white" }}
@@ -229,7 +260,7 @@ export default function Header1() {
                 BookAppointment
               </Link>
               {!loggedIn && (
-                <Link style={navLinkStyle} to="#2">
+                <Link style={navLinkStyle} to="/user/login">
                   <i
                     className="fa fa-sign-in mr-1"
                     style={{ fontSize: "17px", color: "white" }}
@@ -244,14 +275,19 @@ export default function Header1() {
                 ></i>
                 About-Us
               </Link>
-              <Link style={navLinkStyle} to="#3">
+              <Link style={navLinkStyle} to="/contactus">
                 <i
                   className="fa fa-envelope mr-1"
                   style={{ fontSize: "17px", color: "white" }}
                 ></i>
                 Contact-Us
               </Link>
-              {loggedIn && <AccountCircle onClick={handleProfileMenuOpen} />}
+              {loggedIn && (
+                <AccountCircle
+                  style={{ cursor: "pointer" }}
+                  onClick={handleProfileMenuOpen}
+                />
+              )}
             </div>
           </div>
 
@@ -270,6 +306,13 @@ export default function Header1() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      <button
+        onClick={toggleLogIn}
+        style={{ marginTop: "200px" }}
+        className="btn btn-primary"
+      >
+        Login/Logout
+      </button>
     </div>
   );
 }
