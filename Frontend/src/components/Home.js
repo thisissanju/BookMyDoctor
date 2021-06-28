@@ -4,8 +4,14 @@ import { Carousel, Container } from "react-bootstrap";
 export default function Home() {
   return (
     <>
-      <Container fluid className="my-4">
-        <Carousel
+      <Container style={{ marginTop: "90px" }}>
+        <img
+          className="d-block w-100"
+          src={process.env.PUBLIC_URL + "/home/carousel8.jpg"}
+          alt="First slide"
+          style={{ height: "540px" }}
+        />
+        {/* <Carousel
           className="m-auto"
           style={{ width: "1200px", border: "8px groove grey" }}
         >
@@ -37,7 +43,7 @@ export default function Home() {
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src={process.env.PUBLIC_URL + "/home/carousel9.jpg"}
+              src={process.env.PUBLIC_URL + "/home/carousel91.jpg"}
               alt="Third slide"
               style={{ height: "540px" }}
             />
@@ -49,7 +55,7 @@ export default function Home() {
               </p>
             </Carousel.Caption>
           </Carousel.Item>
-        </Carousel>
+        </Carousel> */}
       </Container>
 
       {/*Pics and hospital names*/}
