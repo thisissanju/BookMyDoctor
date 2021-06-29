@@ -39,15 +39,14 @@ export default function UserSignUp() {
   const [user, setDoctor] = useState({
     userName: "",
     userPhone: "",
-    dob: "",
+    age: "",
     address: "",
-    userEmail: "",
-    userPassword: "",
+    email: "",
+    password: "",
     gender: "Male",
   });
 
-  const { userName, userPhone, dob, address, userEmail, userPassword, gender } =
-    user;
+  const { userName, userPhone, age, address, email, password, gender } = user;
 
   const onInputChange = (e) => {
     setDoctor({ ...user, [e.target.name]: e.target.value });
@@ -58,11 +57,11 @@ export default function UserSignUp() {
     e.preventDefault();
     //call post method
     await axios
-      .post("http://localhost:3003/patient/add", user)
+      .post("http://localhost:8050/patient/add", user)
       .then((response) => {
         if (response.status === 200)
           alert("Successflly Signed Up!!\nWelcome to BMD Community");
-        history.push("/");
+        //history.push("/");
       })
       .catch((err) => console.log(err));
     //redirect to home page after storing
@@ -127,12 +126,12 @@ export default function UserSignUp() {
                 margin="normal"
                 required
                 fullWidth
-                id="userEmail"
+                id="email"
                 label="Email"
-                name="userEmail"
-                autoComplete="userEmail"
+                name="email"
+                autoComplete="email"
                 autoFocus
-                value={userEmail}
+                value={email}
                 onChange={(e) => onInputChange(e)}
               />
             </Grid>
@@ -142,12 +141,12 @@ export default function UserSignUp() {
                 variant="outlined"
                 margin="normal"
                 required
-                id="userPassword"
+                id="password"
                 label="Password"
-                name="userPassword"
-                autoComplete="userPassword"
+                name="password"
+                autoComplete="password"
                 autoFocus
-                value={userPassword}
+                value={password}
                 onChange={(e) => onInputChange(e)}
               />
             </Grid>
@@ -178,11 +177,13 @@ export default function UserSignUp() {
                 margin="normal"
                 required
                 fullWidth
-                name="dob"
-                label="DOB"
-                type="date"
-                id="dob"
-                value={dob}
+                name="age"
+                label="Age"
+                type="number"
+                id="age"
+                value={age}
+                min="1"
+                max="100"
                 onChange={(e) => onInputChange(e)}
               />
             </Grid>
