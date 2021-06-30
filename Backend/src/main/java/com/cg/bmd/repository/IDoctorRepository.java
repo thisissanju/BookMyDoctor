@@ -39,4 +39,17 @@ public interface IDoctorRepository extends JpaRepository<Doctor, Integer> {
 	
 	public List<Doctor> findBySpeciality(String speciality);
 	
+	@Query("select d from Doctor d where d.location=?1")
+	public List<Doctor> findByLocation(String location);
+	
+	@Query("select d from Doctor d where d.speciality=?1 && d.location=?2")
+	public List<Doctor> findBySpecialityAndLocation(String speciality,String location);
+	
+	@Query("select d from Doctor d where d.speciality=?1 && d.location=?2 && d.hospitalName=?3")
+	public List<Doctor> findBySpecialityAndLocationAndHospitalName(String speciality,String location, String hospitalName);
+	
+	@Query("select d from Doctor d where d.speciality=?1 && d.location=?2")
+	public List<Doctor> findBySpecialityAndHospitalName(String speciality,String hospitalName);
+	
+	
 }
