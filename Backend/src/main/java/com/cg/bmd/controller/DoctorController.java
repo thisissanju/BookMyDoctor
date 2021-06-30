@@ -95,5 +95,37 @@ public class DoctorController {
 		logger.warn("Doctor deleted with id " + doctorId);
 		return service.removeDoctorById(doctorId);
 	}
+	
+	@GetMapping("/getbylocation/{location}")
+	public List<DoctorDTO> getDoctorListByLocation(@PathVariable("location") String location) 
+			throws DoctorException {
+		List<DoctorDTO> doctorDtoList = service.findDoctorByLocation(location);
+		return doctorDtoList;
+	}
+	
+	@GetMapping("/getbyspecialityandlocation/{speciality}/{location}")
+	public List<DoctorDTO> getDoctorListBySpecialityAndLocation(@PathVariable("speciality") String speciality, 
+			@PathVariable("location") String location) 
+			throws DoctorException {
+		List<DoctorDTO> doctorDtoList = service.findDoctorBySpecialityAndLocation(speciality, location);
+		return doctorDtoList;
+	}
+	
+	@GetMapping("/getbyspecialityandlocationandhospitalname/{speciality}/{location}/{hospitalName}")
+	public List<DoctorDTO> getDoctorListBySpecialityAndLocationAndHospitalName(@PathVariable("speciality") String speciality, 
+			@PathVariable("location") String location, @PathVariable("hospitalName") String hospitalName) 
+			throws DoctorException {
+		List<DoctorDTO> doctorDtoList = service.findDoctorBySpecialityAndLocationAndHospital(speciality, location, hospitalName);
+		return doctorDtoList;
+	}
+	
+	@GetMapping("/getbyspecialityandhospitalname/{speciality}/{hospitalName}")
+	public List<DoctorDTO> getDoctorListBySpecialityAndHospitalName(@PathVariable("speciality") String speciality, 
+			@PathVariable("hospitalName") String hospitalName) 
+			throws DoctorException {
+		List<DoctorDTO> doctorDtoList = service.findDoctorBySpecialityAndHospitalName(speciality, hospitalName);
+		return doctorDtoList;
+	}
+	
 
 }
