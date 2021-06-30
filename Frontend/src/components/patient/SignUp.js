@@ -144,6 +144,7 @@ export default function UserSignUp() {
                 id="password"
                 label="Password"
                 name="password"
+                type="password"
                 autoComplete="password"
                 autoFocus
                 value={password}
