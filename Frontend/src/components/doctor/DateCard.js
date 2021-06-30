@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     
   };
 
-  export default function SimpleCard() {
+  export default function DateCard() {
     const classes = useStyles();
     const [selectedDate, setSelectedDate] = React.useState(new Date());
     const handleDateChange = (date) => {
