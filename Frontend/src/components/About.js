@@ -83,7 +83,7 @@ export default function About() {
           <h1>ABOUT US</h1>
           <h2>Welcome to Book My Doctor!</h2>
           <form className={classes.form} noValidate>
-          <Typography align="justify"> We are the Largest Medical Care Provider in Delhi since 2006. We started running the first clinic at the center of Delhi in 2006 and we open the new clinic almost every year. Now, 76 doctors and 100 co-medicals work together and always support about 4 thousand elderly, patients at their terminal stage or patients with special medical needs.</Typography>
+          <Typography align="justify"> We are the Largest online Medical Care Provider in Delhi since 2006. We started running the first clinic at the center of Delhi in 2006 and we open the new clinic almost every year. Now, 76 doctors and 100 co-medicals work together and always support about 4 thousand elderly, patients at their terminal stage or patients with special medical needs,the best thing about this app is the ease at which user can access it,not only this we have also added list of doctors who are willing to provide their services free of cost to bpl card holders.</Typography>
             <br/>
           <Typography align="justify">All of our clinics are specialized in Medical Care and certified by the government. That means we have enough power to support patients and satisfactory track records of emergency visits.</Typography>
           </form>
