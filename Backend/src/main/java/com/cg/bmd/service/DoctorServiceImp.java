@@ -179,5 +179,50 @@ public class DoctorServiceImp implements IDoctorService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public List<DoctorDTO> findDoctorByLocation(String location) throws DoctorException {
+		List<Doctor> doctorList = doctorRepository.findByLocation(location);
+		if (doctorList.isEmpty()) {
+			logger.warn("No doctor found with given name");
+			throw new DoctorException("No doctor found with given name in DB");
+		}
+		return Util.DoctorEntityToDtoList(doctorList);
+	}
+	
+	@Override
+	public List<DoctorDTO> findDoctorBySpecialityAndLocation(String speciality, String location)  throws DoctorException{
+		// TODO Auto-generated method stub
+		List<Doctor> doctorList = doctorRepository.findBySpecialityAndLocation(speciality,location);
+		if (doctorList.isEmpty()) {
+			logger.warn("No doctor in database");
+			throw new DoctorException("Empty List returned");
+		}
+		return Util.DoctorEntityToDtoList(doctorList);
+	}
+
+	@Override
+	public List<DoctorDTO> findDoctorBySpecialityAndLocationAndHospital(String speciality, String location,
+			String hospitalName) throws DoctorException{
+		// TODO Auto-generated method stub
+		List<Doctor> doctorList = doctorRepository.findBySpecialityAndLocationAndHospitalName(speciality,location,hospitalName);
+		if (doctorList.isEmpty()) {
+			logger.warn("No doctor in database");
+			throw new DoctorException("Empty List returned");
+		}
+		return Util.DoctorEntityToDtoList(doctorList);
+	}
+
+	@Override
+	public List<DoctorDTO> findDoctorBySpecialityAndHospitalName(String speciality, String hospitalName) throws DoctorException{
+		// TODO Auto-generated method stub
+		List<Doctor> doctorList = doctorRepository.findBySpecialityAndHospitalName(speciality,hospitalName);
+		if (doctorList.isEmpty()) {
+			logger.warn("No doctor in database");
+			throw new DoctorException("Empty List returned");
+		}
+		return Util.DoctorEntityToDtoList(doctorList);
+	}
+
 
 }
