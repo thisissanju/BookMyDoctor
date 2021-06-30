@@ -34,5 +34,14 @@ public interface IDoctorService {
 	DoctorDTO updateAvailability(AvailabilityDateDTO availabilityDateDto);
 
 	DoctorDTO addAvailability(AvailabilityDateDTO availabilityDateDto);
+	
+	List<DoctorDTO> findDoctorByLocation(String location);
+	
+	List<DoctorDTO> findDoctorBySpecialityAndLocation(String speciality,String location);
+	
+	List<DoctorDTO> findDoctorBySpecialityAndLocationAndHospital(String speciality,String location, String hospitalName);
+	
+	List<DoctorDTO> findDoctorBySpecialityAndHospitalName(String speciality,String hospitalName);
+
 
 }
