@@ -129,6 +129,7 @@ export default function UserSignUp() {
                 id="email"
                 label="Email"
                 name="email"
+                type="email"
                 autoComplete="email"
                 autoFocus
                 value={email}
